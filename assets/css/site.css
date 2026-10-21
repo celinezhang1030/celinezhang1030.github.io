@@ -859,6 +859,198 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
 .reveal.is-in { opacity: 1; transform: none; }
 
 /* ==========================================================================
+   首页：菜单式排版
+   ========================================================================== */
+
+/* ---------- 顶部大标题 ---------- */
+.menu-hero {
+  padding: clamp(56px, 9vw, 116px) 0 clamp(34px, 5vw, 64px);
+  text-align: center;
+  background:
+    radial-gradient(90% 120% at 50% -20%, rgb(226 180 65 / .10), transparent 62%),
+    var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.menu-hero__eyebrow {
+  font-size: 9.5px; font-weight: 600; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--muted);
+  margin: 0 0 clamp(16px, 2.2vw, 26px);
+}
+.menu-hero__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(46px, 8.4vw, 112px);
+  line-height: .98;
+  letter-spacing: -.01em;
+  margin: 0;
+  color: var(--ink);
+}
+.menu-hero__title em {
+  font-style: italic;
+  background: linear-gradient(96deg, var(--gold-2), var(--gold) 45%, #C99A24);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--gold);
+}
+
+/* 标题下面「—— ✦ ——」那条装饰线 */
+.menu-hero__orn {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin: clamp(20px, 2.6vw, 32px) auto clamp(18px, 2.2vw, 26px);
+  max-width: 340px;
+}
+.menu-hero__orn span {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-2));
+}
+.menu-hero__orn span:last-child {
+  background: linear-gradient(90deg, var(--line-2), transparent);
+}
+.menu-hero__orn i {
+  font-style: normal; font-size: 11px; color: var(--gold);
+  line-height: 1;
+}
+.menu-hero__sub {
+  max-width: 46ch; margin: 0 auto;
+  font-size: 14.5px; color: var(--ink-2); line-height: 1.7;
+}
+.menu-hero__sub span {
+  display: block; margin-top: 6px;
+  font-size: 12.5px; color: var(--muted);
+}
+
+/* ---------- 菜单主体 ---------- */
+.menu {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(36px, 5vw, 68px) var(--gut) clamp(20px, 3vw, 40px);
+}
+
+.menu-group { margin-bottom: clamp(34px, 4.4vw, 58px); }
+.menu-group:last-child { margin-bottom: 0; }
+
+.menu-group__head {
+  display: flex; align-items: center; gap: clamp(12px, 2vw, 22px);
+  margin: 0 0 clamp(14px, 1.8vw, 22px);
+  font-weight: 700;
+}
+.menu-group__rule {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-2) 40%, var(--line-2) 60%, transparent);
+}
+.menu-group__label {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  white-space: nowrap;
+}
+.menu-group__en {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 32px);
+  letter-spacing: .03em;
+  color: var(--ink);
+}
+.menu-group__zh {
+  font-family: var(--font-body);
+  font-size: 10.5px; letter-spacing: .3em;
+  color: var(--gold);
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+.menu-group__list { list-style: none; margin: 0; padding: 0; }
+
+/* 一道菜 */
+.menu-item {
+  display: flex; align-items: center; gap: clamp(12px, 1.7vw, 20px);
+  padding: clamp(12px, 1.6vw, 18px) clamp(8px, 1.2vw, 14px);
+  border-radius: 10px;
+  transition: background .2s var(--ease);
+}
+.menu-item:hover { background: var(--paper-2); }
+
+.menu-item__thumb {
+  flex: 0 0 auto;
+  width: clamp(46px, 5.4vw, 66px);
+  height: clamp(46px, 5.4vw, 66px);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--paper-3);
+  box-shadow: 0 0 0 1px var(--line), 0 3px 12px rgb(42 42 38 / .10);
+}
+.menu-item__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.menu-item__thumb--empty {
+  background: repeating-linear-gradient(45deg, var(--paper-3), var(--paper-3) 6px, var(--paper-2) 6px, var(--paper-2) 12px);
+}
+
+.menu-item__body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.menu-item__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.2;
+  color: var(--ink);
+}
+.menu-item__sub {
+  font-size: 11px; color: var(--muted); letter-spacing: .04em;
+}
+
+/* 中间的虚线引导 */
+.menu-item__dots {
+  flex: 1 1 auto; min-width: 18px; height: 0;
+  border-bottom: 1.5px dotted var(--line-2);
+  opacity: .9;
+  transform: translateY(-3px);
+}
+
+.menu-item__meta {
+  flex: 0 0 auto;
+  font-size: 10.5px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  white-space: nowrap;
+}
+
+.menu-group__all {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: clamp(8px, 1.2vw, 14px);
+  font-size: 11.5px; font-weight: 600; letter-spacing: .06em;
+  color: var(--ink-2);
+  transition: color .2s var(--ease);
+}
+.menu-group__all:hover { color: var(--forest); }
+.menu-group__all svg { width: 13px; height: 13px; }
+.menu-group__stats {
+  color: var(--muted); font-weight: 400; letter-spacing: .02em;
+}
+
+/* ---------- 菜单页脚 ---------- */
+.menu-foot {
+  text-align: center;
+  padding: clamp(36px, 5vw, 64px) 0 clamp(52px, 7vw, 90px);
+  border-top: 1px solid var(--line);
+  background: var(--paper-2);
+}
+.menu-foot__note {
+  font-family: var(--font-script);
+  font-size: clamp(17px, 1.8vw, 21px);
+  color: var(--gold);
+  margin: 0 0 clamp(18px, 2.4vw, 28px);
+}
+.menu-foot__quote {
+  margin: 0 auto clamp(24px, 3vw, 36px);
+  max-width: 26em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(19px, 2.1vw, 26px);
+  line-height: 1.42;
+  color: var(--ink);
+}
+.menu-foot__quote span {
+  display: block; margin-top: 8px;
+  font-family: var(--font-body); font-weight: 400;
+  font-size: 12px; font-style: italic; color: var(--muted);
+}
+.menu-foot__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ==========================================================================
    响应式
    ========================================================================== */
 @media (max-width: 1180px) {
@@ -895,6 +1087,13 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
   .journal-row { grid-template-columns: 82px 1fr; }
   .brand__mark { font-size: 25px; }
   .hero__title { font-size: clamp(40px, 12vw, 58px); }
+}
+
+@media (max-width: 620px) {
+  .menu-item { flex-wrap: wrap; row-gap: 6px; }
+  .menu-item__dots { display: none; }
+  .menu-item__meta { width: 100%; padding-left: calc(clamp(46px, 5.4vw, 66px) + 12px); }
+  .menu-group__all { flex-wrap: wrap; row-gap: 4px; }
 }
 
 @media (max-width: 560px) {
