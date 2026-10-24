@@ -44,7 +44,8 @@
 
   /* ---------------- 分类筛选 ---------------- */
   var filters = doc.querySelectorAll('.filter');
-  var memories = Array.prototype.slice.call(doc.querySelectorAll('.memory'));
+  /* 照片墙用 .memory，时间线用 [data-lb]，两者都要进灯箱 */
+  var memories = Array.prototype.slice.call(doc.querySelectorAll('[data-lb]'));
   if (filters.length && memories.length) {
     filters.forEach(function (btn) {
       btn.addEventListener('click', function () {
