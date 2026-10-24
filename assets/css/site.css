@@ -5,53 +5,73 @@
 
 /* ---------- 字体（自托管，失败自动回退系统字体） ---------- */
 @font-face {
+  font-family: 'Parisienne';
+  src: url('../fonts/parisienne-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
   font-family: 'Cormorant Garamond';
-  src: url('fonts/cormorant-garamond-500.woff2') format('woff2');
+  src: url('../fonts/cormorant-garamond-500.woff2') format('woff2');
   font-weight: 500; font-style: normal; font-display: swap;
 }
 @font-face {
+  font-family: 'Parisienne';
+  src: url('../fonts/parisienne-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
   font-family: 'Cormorant Garamond';
-  src: url('fonts/cormorant-garamond-600.woff2') format('woff2');
+  src: url('../fonts/cormorant-garamond-600.woff2') format('woff2');
   font-weight: 600; font-style: normal; font-display: swap;
 }
 @font-face {
-  font-family: 'Cormorant Garamond';
-  src: url('fonts/cormorant-garamond-700.woff2') format('woff2');
-  font-weight: 700; font-style: normal; font-display: swap;
+  font-family: 'Parisienne';
+  src: url('../fonts/parisienne-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: 'Cormorant Garamond';
-  src: url('fonts/cormorant-garamond-500-italic.woff2') format('woff2');
+  src: url('../fonts/cormorant-garamond-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Parisienne';
+  src: url('../fonts/parisienne-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/cormorant-garamond-500-italic.woff2') format('woff2');
   font-weight: 500; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: 'Playfair Display';
-  src: url('fonts/playfair-display-400.woff2') format('woff2');
+  src: url('../fonts/playfair-display-400.woff2') format('woff2');
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: 'Playfair Display';
-  src: url('fonts/playfair-display-700.woff2') format('woff2');
+  src: url('../fonts/playfair-display-700.woff2') format('woff2');
   font-weight: 700; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: 'Playfair Display';
-  src: url('fonts/playfair-display-400-italic.woff2') format('woff2');
+  src: url('../fonts/playfair-display-400-italic.woff2') format('woff2');
   font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: 'Inter';
-  src: url('fonts/inter-400.woff2') format('woff2');
+  src: url('../fonts/inter-400.woff2') format('woff2');
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: 'Inter';
-  src: url('fonts/inter-600.woff2') format('woff2');
+  src: url('../fonts/inter-600.woff2') format('woff2');
   font-weight: 600; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: 'Caveat';
-  src: url('fonts/caveat-400.woff2') format('woff2');
+  src: url('../fonts/caveat-400.woff2') format('woff2');
   font-weight: 400; font-style: normal; font-display: swap;
 }
 
@@ -82,7 +102,7 @@
   --radius-s:   9px;
   --radius-pill: 999px;
 
-  --font-display: 'Cormorant Garamond', 'Playfair Display', 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', STSong, serif;
+  --font-display: 'Parisienne', 'Cormorant Garamond', 'Playfair Display', 'Songti SC', 'Noto Serif SC', 'Source Han Serif SC', STSong, serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
                'Microsoft YaHei', 'Noto Sans SC', sans-serif;
   --font-script: 'Caveat', 'Kaiti SC', STKaiti, cursive;
@@ -202,7 +222,7 @@ figure { margin: 0; }
 }
 .brand { display: flex; align-items: center; gap: 14px; flex: 0 0 auto; }
 .brand__mark {
-  font-family: var(--font-display); font-weight: 700; font-size: 29px; letter-spacing: .01em;
+  font-family: var(--font-display); font-weight: 700; font-size: 33px; letter-spacing: .01em;
   line-height: 1; color: var(--ink);
 }
 .brand__mark em { font-style: italic; color: var(--gold); }
@@ -707,6 +727,24 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
 .band-quote .sub { display: block; margin-top: 12px; font-size: 12px; color: rgba(246,241,231,.6); font-style: italic; }
 
 /* --------------------------------------------------------------------------
+   Parisienne 只有 400 一个字重，font-weight:700 只能靠浏览器模拟，
+   效果偏弱。叠一层极细的描边，让「加粗」真的看得出来。
+   -------------------------------------------------------------------------- */
+.menu-hero__title,
+.menu-group__en,
+.menu-item__name,
+.tl-head h1,
+.brand__mark,
+.tl-story__body p {
+  -webkit-text-stroke: .45px currentColor;
+  paint-order: stroke fill;
+}
+/* 金色渐变那几个字用金色描边，别用黑色 */
+.menu-hero__title em {
+  -webkit-text-stroke: .45px var(--gold);
+}
+
+/* --------------------------------------------------------------------------
    副标题（小字那一行）
    英文：大写 + 大字距，接近设计稿
    中文：不能大写，字距也要收，否则很散
@@ -735,7 +773,7 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
    内页
    ========================================================================== */
 .page-head { padding: clamp(38px, 5vw, 66px) 0 clamp(20px, 3vw, 34px); border-bottom: 1px solid var(--line); }
-.page-head h1 { font-size: clamp(40px, 5.2vw, 66px); letter-spacing: -.005em; }
+.page-head h1 { font-size: clamp(44px, 5.6vw, 74px); letter-spacing: 0; line-height: 1.1; }
 .page-head h1::after {
   content: ''; display: block; width: 70px; height: 2px; margin-top: 22px;
   background: linear-gradient(90deg, var(--gold), rgba(226, 180, 65, 0));
@@ -879,14 +917,14 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
 .menu-hero__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(46px, 8.4vw, 112px);
-  line-height: .98;
+  font-size: clamp(54px, 9.6vw, 132px);
+  line-height: 1.06;
   letter-spacing: -.01em;
   margin: 0;
   color: var(--ink);
 }
 .menu-hero__title em {
-  font-style: italic;
+  font-style: normal;
   background: linear-gradient(96deg, var(--gold-2), var(--gold) 45%, #C99A24);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: var(--gold);
@@ -963,11 +1001,26 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
   display: flex; flex-direction: column; align-items: center; gap: 2px;
   white-space: nowrap;
 }
+/* 分类的 3D 图标（用你自己的那套） */
+.menu-group__icon {
+  width: clamp(52px, 5.6vw, 68px);
+  height: clamp(52px, 5.6vw, 68px);
+  object-fit: contain;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 4px 12px rgb(42 42 38 / .14));
+  transition: transform .35s var(--ease);
+}
+.menu-group:hover .menu-group__icon { transform: translateY(-2px) scale(1.04); }
+.menu-group__icon--line {
+  display: grid; place-items: center;
+  color: var(--forest);
+}
 .menu-group__en {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(22px, 2.6vw, 32px);
-  letter-spacing: .03em;
+  font-size: clamp(27px, 3.1vw, 40px);
+  letter-spacing: .01em;
+  line-height: 1.2;
   color: var(--ink);
 }
 .menu-group__zh {
@@ -1008,8 +1061,8 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
 .menu-item__name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(17px, 1.8vw, 22px);
-  line-height: 1.2;
+  font-size: clamp(20px, 2.1vw, 27px);
+  line-height: 1.3;
   color: var(--ink);
 }
 .menu-item__sub {
@@ -1152,8 +1205,8 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
 .tl-story__body p {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(17px, 1.9vw, 21px);
-  line-height: 1.85;
+  font-size: clamp(19px, 2.1vw, 24px);
+  line-height: 1.75;
   color: var(--ink);
   margin: 0 0 1.1em;
 }
