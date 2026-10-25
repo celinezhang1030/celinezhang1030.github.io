@@ -222,10 +222,15 @@
       return;
     }
     searchResults.innerHTML = list.slice(0, 60).map(function (it) {
+      // 照片大多没有真正的标题，t 会退化成分类名。
+      // 这时不要再重复显示一遍，只留右侧的分类。
+      var same = !it.t || it.t === it.c;
+      var title = same ? '' : escapeHtml(it.t);
+      var en = (!same && it.e) ? '<span style="display:block;font-style:italic;font-size:12px;color:var(--muted)">' + escapeHtml(it.e) + '</span>' : '';
       return '<a href="' + siteBase() + it.u + '">' +
         '<img src="' + (it.i ? siteBase() + it.i : '') + '" alt="" loading="lazy" width="64" height="48">' +
-        '<span class="t">' + escapeHtml(it.t) + (it.e ? '<span style="display:block;font-style:italic;font-size:12px;color:var(--muted)">' + escapeHtml(it.e) + '</span>' : '') + '</span>' +
-        '<span class="m">' + escapeHtml(it.c) + (it.d ? ' · ' + escapeHtml(it.d) : '') + '</span>' +
+        '<span class="t">' + title + en + '</span>' +
+        '<span class="m">' + escapeHtml(it.c) + '</span>' +
         '</a>';
     }).join('');
   }

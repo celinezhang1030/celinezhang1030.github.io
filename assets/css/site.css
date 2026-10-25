@@ -154,6 +154,7 @@ figure { margin: 0; }
 }
 
 .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
+.wrap--wide { max-width: 1560px; }
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
@@ -1127,10 +1128,10 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
 .menu-foot__actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
 /* ==========================================================================
-   时间线（合集页 / 分类页）：照片按时间排，中间穿插文字
+   故事页：文字在最前，下面是密集照片墙
    ========================================================================== */
 
-.tl-head { text-align: center; padding: clamp(34px, 4.6vw, 62px) var(--gut) clamp(20px, 2.6vw, 34px); }
+.tl-head { text-align: center; padding: clamp(34px, 4.6vw, 62px) var(--gut) clamp(14px, 2vw, 24px); }
 .tl-head h1 { margin: 0; }
 .tl-head h1 .sub {
   display: block;
@@ -1140,7 +1141,7 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
   color: var(--muted);
   margin-top: 14px;
 }
-.tl-head h1 .sub--zh { letter-spacing: .3em; font-size: 13px; text-transform: none; }
+.tl-head h1 .sub--zh { letter-spacing: .3em; font-size: 14px; text-transform: none; }
 .tl-head__meta {
   margin: 12px 0 0;
   font-size: 11px; font-weight: 600; letter-spacing: .14em;
@@ -1148,77 +1149,63 @@ body.has-page-bg .band-journal { background: rgb(251 248 241 / .55); }
 }
 .tl-head .menu-hero__orn { margin-top: clamp(16px, 2vw, 24px); margin-bottom: 0; }
 
-.timeline {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 var(--gut) clamp(50px, 7vw, 90px);
+/* ---------- 文字 ---------- */
+.story-text {
+  max-width: 68ch;
+  margin: 0 auto clamp(30px, 4vw, 52px);
+  padding: clamp(10px, 2vw, 22px) 0 0;
 }
-.timeline__list { list-style: none; margin: 0; padding: 0; }
+.story-text p {
+  font-family: var(--font-body);
+  font-size: clamp(14.5px, 1.05vw, 16px);
+  line-height: 1.95;
+  color: var(--ink-2);
+  margin: 0 0 1.35em;
+}
+.story-text p:last-child { margin-bottom: 0; }
+.story-text em { font-style: italic; color: var(--ink); }
 
-/* ---------- 一张照片 ---------- */
-.tl__entry { margin: 0 0 clamp(30px, 4.4vw, 54px); }
-.tl__date {
-  display: block; text-align: center;
-  font-size: 10.5px; font-weight: 600; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--gold);
-  margin: 0 0 12px;
+/* ---------- 照片墙：一行至少 5 张 ---------- */
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+  gap: clamp(6px, .6vw, 10px);
+  margin: 0 var(--gut) clamp(50px, 7vw, 90px);
 }
-.tl__media {
-  display: block; position: relative;
-  border-radius: var(--radius); overflow: hidden;
+
+.sg {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  border-radius: 5px;
+  overflow: hidden;
   background: var(--paper-3);
-  box-shadow: 0 2px 6px rgb(42 42 38 / .06), 0 14px 40px rgb(42 42 38 / .10);
-  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  transition: transform .28s var(--ease), box-shadow .28s var(--ease);
 }
-.tl__media:hover {
+.sg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sg:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgb(42 42 38 / .08), 0 20px 56px rgb(42 42 38 / .16);
+  box-shadow: 0 8px 26px rgb(42 42 38 / .22);
+  z-index: 1;
 }
-.tl__media img { display: block; width: 100%; height: auto; }
-
-.tl__badge {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  width: 58px; height: 58px; border-radius: 50%;
+.sg__badge {
+  position: absolute; left: 8px; bottom: 8px;
+  width: 26px; height: 26px; border-radius: 50%;
   display: grid; place-items: center;
-  background: rgb(20 30 25 / .5);
-  box-shadow: 0 0 0 1.5px rgb(255 255 255 / .55);
-  color: #fff; backdrop-filter: blur(2px);
-  transition: background .25s var(--ease), transform .25s var(--ease);
-}
-.tl__media:hover .tl__badge { background: rgb(20 30 25 / .68); transform: translate(-50%, -50%) scale(1.06); }
-
-/* ---------- 穿插的文字 ---------- */
-.tl__story { margin: clamp(26px, 3.6vw, 44px) 0 clamp(30px, 4.4vw, 54px); }
-.tl-story { max-width: 34em; margin: 0 auto; text-align: center; }
-
-.tl-orn {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; max-width: 240px; margin: 0 auto clamp(18px, 2.2vw, 26px);
-}
-.tl-orn span {
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--line-2));
-}
-.tl-orn span:last-child { background: linear-gradient(90deg, var(--line-2), transparent); }
-.tl-orn i { font-style: normal; font-size: 10px; color: var(--gold); line-height: 1; }
-
-.tl-story__body p {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(19px, 2.1vw, 24px);
-  line-height: 1.75;
-  color: var(--ink);
-  margin: 0 0 1.1em;
-}
-.tl-story__body p:last-child { margin-bottom: 0; }
-.tl-story__alt {
-  margin-top: 14px;
-  font-size: 12.5px; line-height: 1.75;
-  color: var(--muted); font-style: italic;
+  background: rgb(16 26 20 / .62); color: #fff;
+  backdrop-filter: blur(2px);
 }
 
-.tl-intro { margin: 0 0 clamp(32px, 4.4vw, 54px); }
-.tl-outro { margin: clamp(30px, 4.4vw, 52px) 0 0; }
+/* 窄屏：一行 4 张 → 3 张 → 2 张 */
+@media (max-width: 1100px) {
+  .story-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+}
+@media (max-width: 760px) {
+  .story-grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+}
+@media (max-width: 480px) {
+  .story-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* ==========================================================================
    响应式
